@@ -1,5 +1,6 @@
 export default class BookCards{
-    constructor() {
+    constructor(basket) {
+        this.basket = basket;
         this.container = document.querySelector(".contentContainer__bookCards");
         this.btnLoad = document.querySelector(".contentContainer__btnLoad");
         this.maxResults = 6;
@@ -71,6 +72,8 @@ export default class BookCards{
             const ratingsCount = info.ratingsCount ? `${info.ratingsCount} review` : "";
             const description = info.description ? info.description.substring(0, 100) + "..." : "No description";
             const price = saleInfo.retailPrice ? `$${saleInfo.retailPrice.amount}` : "";
+            const isInBasket = this.basket.isInBasket(title);
+            const btnBuy = isInBasket ? "in the cart" : "buy now";
 
             const bookCardElement = document.createElement("div");
             bookCardElement.className = "contentContainer__bookCards_card"
@@ -83,7 +86,7 @@ export default class BookCards{
                     <div class="ratingCount">${ratingsCount}</div>
                     <div class="description">${description}</div>
                     <div class="price">${price}</div>
-                    <button class="buy">buy now</button>
+                    <button class="buy">${btnBuy}</button>
                 </div>`;
             
             this.container.append(bookCardElement)
