@@ -6,8 +6,8 @@ import Slider from "./slider";
 class Main {
 constructor() {
     this.slider = new Slider();
-    this.bookCards = new BookCards();
-    this.basket = new Basket () 
+    this.basket = new Basket ();
+    this.bookCards = new BookCards(this.basket);
     this.basket.init();
 }
 }
